@@ -8,5 +8,10 @@
 </head>
 <body>
     <b1>Hello World</b1>
+    <p>Data from database : <span id="output"></span></p>
+    <script>
+        var name = "<%= name %>";
+        document.getElementById('output').innerHTML = name;
+    </script>
 </body>
 </html>

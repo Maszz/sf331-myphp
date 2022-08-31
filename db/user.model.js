@@ -1,4 +1,4 @@
-pool = require("../utils/db.js");
+const pool = require("./db.js");
 module.exports = {
   async read(username) {
     try {

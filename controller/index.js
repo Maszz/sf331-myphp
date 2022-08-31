@@ -4,6 +4,8 @@ const router = express.Router();
 const process = require("process");
 const user = require("../db/user.model.js");
 router.get("/", (req, res) => {
-  res.sendFile(path.join(process.cwd(), "views", "index.html"));
+  res.render(path.join(process.cwd(), "views", "index.html"), {
+    name: "testName",
+  });
 });
 module.exports = router;
