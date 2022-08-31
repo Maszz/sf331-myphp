@@ -8,10 +8,15 @@
 </head>
 <body>
     <b1>Hello World</b1>
-    <p>Data from database : <span id="db_output"></span></p>
+    <p>Data from database `SELECT * FROM user`: <span id="db_output"></span></p>
+    <p>Data from database `SELECT * FROM user where id=1`: <span id="db_output_2"></span></p>
     <script>
-        var name = "<%= data %>";
-        document.getElementById('db_output').innerHTML = name;
+        var data1 = "<%= data1 %>";
+        var data2 = "<%= data2 %>";
+
+        document.getElementById('db_output').innerHTML = data1;
+        document.getElementById('db_output_2').innerHTML = data2;
+
     </script>
 </body>
 </html>

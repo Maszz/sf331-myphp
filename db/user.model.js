@@ -1,46 +1,23 @@
-const pool = require("./db.js");
+const db = require("./db.js");
 module.exports = {
-  async read(username) {
-    try {
-      conn = await pool.getConnection();
-      sql = "SELECT id,username,email,role FROM USERS WHERE username = ?";
-      const rows = await conn.query(sql, username);
-      conn.end();
-      if (rows.length == 1) {
-        return rows[0];
-      } else {
-        return false;
+  listAllUSer(cb) {
+    var sql = "select * from user";
+    var params = [];
+    db.all(sql, params, (err, rows) => {
+      if (err) {
+        throw err;
       }
-    } catch (err) {
-      throw err;
-    }
+      cb(rows);
+    });
   },
-  async list() {
-    try {
-      conn = await pool.getConnection();
-      sql = "SELECT id,username,email,role FROM USERS";
-      const rows = await conn.query(sql);
-      conn.end();
-      return rows;
-    } catch (err) {
-      throw err;
-    }
-  },
-
-  async areValidCredentials(username, password) {
-    try {
-      conn = await pool.getConnection();
-      sql = "SELECT pass FROM USERS WHERE username = ?";
-      const rows = await conn.query(sql, username);
-      conn.end();
-
-      if (rows.length == 1 && rows[0].pass === password) {
-        return true;
-      } else {
-        return false;
+  getFirstUser(cb) {
+    var sql = "select * from user where id = 1";
+    var params = [];
+    db.all(sql, params, (err, rows) => {
+      if (err) {
+        throw err;
       }
-    } catch (err) {
-      throw err;
-    }
+      cb(rows);
+    });
   },
 };
